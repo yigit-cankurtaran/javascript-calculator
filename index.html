@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+  <h1>Calculator</h1>
+
+  <form>
+    <input type="text" id="input" placeholder="Enter a calculation" />
+    <button type="button" onclick="calculate()">Calculate</button>
+  </form>
+
+  <p id="output"></p>
+
+  <script>
+    function calculate() {
+      // Get the input value
+      let input = document.getElementById('input').value;
+
+      // Calculate the result
+      let result = eval(input);
+
+      // Display the result
+      document.getElementById('output').innerHTML = result;
+    }
+  </script>
+</body>
+</html>
