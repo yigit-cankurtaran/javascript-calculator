@@ -14,7 +14,7 @@
     }
 
     button {
-      width: 100px;
+      width: 40px;
       height: 40px;
       font-size: 16px;
       cursor: pointer;
@@ -29,21 +29,57 @@
 <body>
   <h1>Calculator</h1>
 
-  <form>
-    <input type="text" id="input" placeholder="Enter a calculation" />
-    <button type="button" onclick="calculate()">Calculate</button>
-  </form>
+  <div id="input"></div>
+
+  <div id="buttons">
+    <button type="button" onclick="inputNumber(1)">1</button>
+    <button type="button" onclick="inputNumber(2)">2</button>
+    <button type="button" onclick="inputNumber(3)">3</button>
+    <button type="button" onclick="inputOperator('+')">+</button>
+    <br />
+    <button type="button" onclick="inputNumber(4)">4</button>
+    <button type="button" onclick="inputNumber(5)">5</button>
+    <button type="button" onclick="inputNumber(6)">6</button>
+    <button type="button" onclick="inputOperator('-')">-</button>
+    <br />
+    <button type="button" onclick="inputNumber(7)">7</button>
+    <button type="button" onclick="inputNumber(8)">8</button>
+    <button type="button" onclick="inputNumber(9)">9</button>
+    <button type="button" onclick="inputOperator('*')">*</button>
+    <br />
+    <button type="button" onclick="inputNumber(0)">0</button>
+    <button type="button" onclick="inputOperator('/')">/</button>
+    <button type="button" onclick="inputOperator('(')">(</button>
+    <button type="button" onclick="inputOperator(')')">)</button>
+  </div>
+
+  <button type="button" onclick="calculate()">Calculate</button>
 
   <p id="output"></p>
 
   <script>
+    // Store the current input value
+    let currentInput = "";
+
+    function inputNumber(num) {
+      // Update the current input value
+      currentInput += num;
+
+      // Update the input field
+      document.getElementById('input').innerHTML = currentInput;
+    }
+
+    function inputOperator(operator) {
+      // Update the current input value
+      currentInput += operator;
+
+      // Update the input field
+      document.getElementById('input').innerHTML = currentInput;
+    }
+
     function calculate() {
-      // Get the input value
-      let input = document.getElementById('input').value;
-
       // Calculate the result
-      let result = eval(input);
-
+      let result = eval(currentInput);
       // Display the result
       document.getElementById('output').innerHTML = result;
     }
