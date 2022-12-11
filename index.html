@@ -59,7 +59,7 @@
     </div>
   </div>
   <script>
-    const calculatorScreen = document.querySelector('.calculator-screen');
+    const calculatorScreen = document.getElementById('calculator-screen');
     const calculatorKeys = document.querySelector('.calculator-keys');
     const calculator = document.querySelector('.calculator');
 
@@ -94,23 +94,28 @@
         if (!hasDecimal) {
           screenValue += keyValue;
           hasDecimal = true;
-        } else if (keyValue === '=') {
-          // if the key is the equals sign, evaluate the expression and update the screen value with the result
-          const result = eval(`${firstOperand} ${operator} ${screenValue}`);
-          screenValue = String(result);
-          hasDecimal = String(result).includes('.');
-          firstOperand = '';
-          operator = '';
-          // update the screen with the result of the expression
-          calculatorScreen.textContent = result;
-        } else {
-          // if the key is a number, add it to the screen value
-          screenValue += keyValue;
         }
+      } else if (keyValue === '=') {
+        // if the key is the equals sign, evaluate the expression and update the screen value with the result
+        const result = eval(`${firstOperand} ${operator} ${screenValue}`);
+        screenValue = String(result);
+        hasDecimal = String(result).includes('.');
+        firstOperand = '';
+        operator = '';
+        // update the screen with the result of the expression
+        if (calculatorScreen) {
+          calculatorScreen.textContent = result;
+        }
+      } else {
+        // if the key is a number, add it to the screen value
+        screenValue += keyValue;
+      }
 
-        // update the screen with the new screen value
+      // update the screen with the new screen value
+      if (calculatorScreen) {
         calculatorScreen.textContent = screenValue;
-      });
+      }
+    });
   </script>
 </body>
 
