@@ -94,22 +94,23 @@
         if (!hasDecimal) {
           screenValue += keyValue;
           hasDecimal = true;
+        } else if (keyValue === '=') {
+          // if the key is the equals sign, evaluate the expression and update the screen value with the result
+          const result = eval(`${firstOperand} ${operator} ${screenValue}`);
+          screenValue = String(result);
+          hasDecimal = String(result).includes('.');
+          firstOperand = '';
+          operator = '';
+          // update the screen with the result of the expression
+          calculatorScreen.textContent = result;
+        } else {
+          // if the key is a number, add it to the screen value
+          screenValue += keyValue;
         }
-      } else if (keyValue === '=') {
-        // if the key is the equals sign, evaluate the expression and update the screen value with the result
-        const result = eval(`${firstOperand} ${operator} ${screenValue}`);
-        screenValue = String(result);
-        hasDecimal = String(result).includes('.');
-        firstOperand = '';
-        operator = '';
-      } else {
-        // if the key is a number, add it to the screen value
-        screenValue += keyValue;
-      }
 
-      // update the screen with the new screen value
-      calculatorScreen.textContent = screenValue;
-    });
+        // update the screen with the new screen value
+        calculatorScreen.textContent = screenValue;
+      });
   </script>
 </body>
 
