@@ -26,5 +26,5 @@ function calculate() {
 
 function clear() {
   //Clears the input field
-  document.getElementById('input').value = '';
+  document.getElementById('input').innerHTML = '';
 }
