@@ -53,7 +53,8 @@
     <button type="button" onclick="inputOperator(')')">)</button>
   </div>
 
-  <button type="button" onclick="calculate()">Calculate</button>
+  <button type="button" onclick="calculate()">Calc</button>
+  <button type="button" onclick="clear()">AC</button>
 
   <p id="output"></p>
 
@@ -83,6 +84,12 @@
       // Display the result
       document.getElementById('output').innerHTML = result;
     }
+
+    function clear() {
+      //Clears the input field
+      document.getElementById('input').value = '';
+    }
+
   </script>
 </body>
 </html>
